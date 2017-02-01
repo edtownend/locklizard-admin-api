@@ -40,4 +40,4 @@ A wrapper for LockLizard Enterprise v4 API, to make the API slightly more paleta
 Check out the code - it's pretty well commented.
 
 ##Licence
-
+Released under [MIT license](http://opensource.org/licenses/MIT)
