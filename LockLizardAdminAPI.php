@@ -285,14 +285,14 @@ Class LockLizardAdminAPI {
                 if ( $val === 'true' || $val === 'yes' ) {
                     return true;
 
-                } else if ( $val === 'false' || $val === 'no' ) {
+                } elseif ( $val === 'false' || $val === 'no' ) {
                     return false;
 
-                } else if ( preg_match("/^[0-9]{2}-[0-9]{2}-[0-9]{4}$/", $val) ) {
+                } elseif ( preg_match("/^[0-9]{2}-[0-9]{2}-[0-9]{4}$/", $val) ) {
                     // Dates
                     return DateTime::createFromFormat('m-d-Y', $val, $this->timezone);
 
-                } else if ( preg_match("/^[0-9]{2}-[0-9]{2}-[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}$/", $val) ) {
+                } elseif ( preg_match("/^[0-9]{2}-[0-9]{2}-[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}$/", $val) ) {
                     // Timestamps
                     return DateTime::createFromFormat('m-d-Y H:i:s', $val, $this->timezone);
 
