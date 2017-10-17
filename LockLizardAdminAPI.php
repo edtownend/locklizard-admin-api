@@ -40,16 +40,24 @@ Class LockLizardAdminAPI {
 
     /**
      * These parameters have maximum input
-     * and the resquest will be chunked if those limits are exceeded
+     * and the request will be chunked if those limits are exceeded
      * @var array
      */
-    private $chunkable = ['custid', 'docid', 'pubid'];
+    private $chunkable = [
+        'custid',
+        'publication',
+        'document',
+        'pubid',
+        'docid',
+    ];
 
     /**
      * The maximum number of IDs in each chunkable param
+     * In V4 the limit is actually 200 IDs, BUT that's in total over all the chunkable params. BAH
+     * TODO: more intelligently chunk to meet this limit
      * @var integer
      */
-    private $chunkSize = 199;
+    private $chunkSize = 100;
 
     /**
      * Keys for matching customer data to values
