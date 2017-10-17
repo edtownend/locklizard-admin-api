@@ -1,19 +1,19 @@
-#LockLizard Enterprise V4 API Wrapper
+# LockLizard Enterprise V4 API Wrapper
 
 A wrapper for LockLizard Enterprise v4 API, to make the API slightly more paletable.
 
-##Features
+## Features
 - Parses LockLizard's utterly bizzare response format, returning associative arrays
 - Automatically chunks requests that contain more than 200 IDs
 - Fakes some helpful methods not in the LockLizard API, for instance replacing access rules instead of just adding or removing
 
-##To do (PRs welcome)
+## To do (PRs welcome)
 - Throw exceptions on errors
 - Write tests
 - Improve send and sendPost methods?
 - Possibly add some more methods via screen scraping of the admin? It's not possible to get the number of activations via the API...
 
-##Usage
+## Usage
 
     <?php
 
@@ -36,8 +36,8 @@ A wrapper for LockLizard Enterprise v4 API, to make the API slightly more paleta
     // ];
     ?>
 
-##Methods
+## Methods
 Check out the code - it's pretty well commented.
 
-##Licence
+## Licence
 Released under [MIT license](http://opensource.org/licenses/MIT)
