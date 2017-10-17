@@ -3,7 +3,10 @@
 namespace LockLizardAdminAPI;
 
 /**
+ * Class LockLizardAdminAPI
  * Wrapper for the LockLizard Enterprise v4 Admin
+ * https://github.com/edtownend/locklizard-admin-api
+ * @author  Edward Townend <edward@townend.co>
  */
 
 Class LockLizardAdminAPI {
