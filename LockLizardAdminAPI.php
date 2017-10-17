@@ -1365,22 +1365,31 @@ Class LockLizardAdminAPI {
      */
     public function setDocumentAccess($customerIds, $documentIds)
     {
-        // Probably quicker to get all Documents rather than find the
-        // ones that the given customer ids currently have access to
-        $allDocuments = $this->listDocuments();
+        $allAccess = $this->listDocumentsDirectAccess();
 
-        if ( $allDocuments['status'] !== 'OK' || empty($allDocuments['data']) ) {
-            return $allDocuments;
+        if ( $allAccess['status'] !== 'OK' ) {
+            return $allAccess;
         }
 
-        $allDocumentIds = array_column($allDocuments['data'], 'id');
+        // Get current individual document access for each customer
+        $toRevoke = array_map(function($item) use ($customerIds) {
+            if ( in_array($item['customer_id'], (array) $customerIds) ) {
+                return $item['document_id'];
+            } else {
+                return null;
+            }
+        }, (array) $allAccess['data']);
 
-        $revokeAll = $this->revokeDocumentAccess($customerIds, $allDocumentIds);
+        $toRevoke = array_filter(array_unique($toRevoke));
+
+        if ( ! empty($toRevoke) ) {
+            $revoked = $this->revokeDocumentAccess($customerIds, $toRevoke);
+        }
 
         if ( ! empty($documentIds) ) {
             return $this->grantDocumentAccess($customerIds, $documentIds);
         } else {
-            return $revokeAll;
+            return isset($revoked) ? $revoked : array('status' => 'OK'); //nothing changed so fake an ok response
         }
     }
 }
